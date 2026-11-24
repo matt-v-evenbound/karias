@@ -1,0 +1,921 @@
+{
+ "source": "production portal 243261036, read 2026-11-24",
+ "target": "sandbox portal 245802241",
+ "groups_already_created": [
+  "communication_preference",
+  "fedlogic_member_outreach",
+  "_merge_review_row_"
+ ],
+ "create": {
+  "contacts": [
+   {
+    "name": "active_outbound_campaign",
+    "label": "Active Outbound Campaign",
+    "type": "enumeration",
+    "fieldType": "select",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive",
+    "options": [
+     {
+      "label": "Provider Search Drop Off",
+      "value": "Provider Search Drop Off",
+      "displayOrder": 0,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "K-Card Check-in Follow Up",
+      "value": "K-Card Check-in Follow Up",
+      "displayOrder": 1,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "ER Diversion",
+      "value": "ER Diversion",
+      "displayOrder": 2,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "FedLogic",
+      "value": "FedLogic",
+      "displayOrder": 3,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "Welcome Call",
+      "value": "Welcome Call",
+      "displayOrder": 4,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "Welcome Call - Renewal",
+      "value": "Welcome Call - Renewal",
+      "displayOrder": 5,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "Primary Care",
+      "value": "Primary Care",
+      "displayOrder": 6,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "Mammogram",
+      "value": "Mammogram",
+      "displayOrder": 7,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "GI/Colonoscopy",
+      "value": "GI/Colonoscopy",
+      "displayOrder": 8,
+      "hidden": false,
+      "description": ""
+     }
+    ]
+   },
+   {
+    "name": "appointment_booking_source",
+    "label": "Appointment Booking Source",
+    "type": "enumeration",
+    "fieldType": "select",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive",
+    "options": [
+     {
+      "label": "Concierge",
+      "value": "Concierge",
+      "displayOrder": 0,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "K-card",
+      "value": "K-card",
+      "displayOrder": 1,
+      "hidden": false,
+      "description": ""
+     }
+    ]
+   },
+   {
+    "name": "batch_key",
+    "label": "Batch key",
+    "type": "string",
+    "fieldType": "text",
+    "groupName": "_merge_review_row_",
+    "displayOrder": -1,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "claims_mature_date",
+    "label": "Claims Mature Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "client_go_live_date",
+    "label": "Client go-live date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "dnc__all_outreach",
+    "label": "DNC - All Outreach",
+    "type": "bool",
+    "fieldType": "booleancheckbox",
+    "groupName": "er_diversion_data",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive",
+    "options": [
+     {
+      "label": "Yes",
+      "value": "true",
+      "displayOrder": 0,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "No",
+      "value": "false",
+      "displayOrder": 1,
+      "hidden": false,
+      "description": ""
+     }
+    ]
+   },
+   {
+    "name": "duplicate_group_id",
+    "label": "Duplicate group ID",
+    "type": "string",
+    "fieldType": "text",
+    "groupName": "_merge_review_row_",
+    "displayOrder": -1,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "ed_diversion_tier_calc",
+    "label": "ED Diversion Tier Calc",
+    "type": "enumeration",
+    "fieldType": "calculation_equation",
+    "groupName": "contactinformation",
+    "description": "Auto-calculated risk tier for the ER Diversion outreach campaign. Self-updates in real time based on ED Indicator, Count for any ED activity within past year, and ED Avoidable Count. \n\nTier 1 = 3+ ED episodes/year with 1+ flagged avoidable. \nTier 2 = exactly 2 ED episodes/year with 1+ flagged avoidable. \nNot Eligible = doesn't meet either threshold.",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": false,
+    "calculationFormula": "(if bool(ed_ind) and ed_cnt >= 3 and ed_avoidable_cnt >= 1 then 'Tier 1 - High'\nelse(if bool(ed_ind) and ed_cnt equals 2 and ed_avoidable_cnt >= 1 then 'Tier 2 - Standard' else 'Not Eligible'))",
+    "numberDisplayHint": "formatted",
+    "showCurrencySymbol": false,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive",
+    "options": [
+     {
+      "label": "Tier 1 - High",
+      "value": "Tier 1 - High",
+      "displayOrder": 0,
+      "hidden": true
+     },
+     {
+      "label": "Tier 2 - Standard",
+      "value": "Tier 2 - Standard",
+      "displayOrder": 1,
+      "hidden": true
+     },
+     {
+      "label": "Not Eligible",
+      "value": "Not Eligible",
+      "displayOrder": 2,
+      "hidden": true
+     }
+    ]
+   },
+   {
+    "name": "er_diversion__last_enrolled_date",
+    "label": "ER Diversion \u2013 Last Enrolled Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "er_diversion_data",
+    "description": "Sets last enrollment date from ER Diversion ticket pipeline. Used to suppress reenrollment for 12 months. ",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "fedlogic_outreach_consent_captured_by",
+    "label": "FedLogic Consent Captured By",
+    "type": "enumeration",
+    "fieldType": "select",
+    "groupName": "fedlogic_member_outreach",
+    "displayOrder": -1,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": false,
+    "externalOptions": true,
+    "referencedObjectType": "OWNER",
+    "dataSensitivity": "non_sensitive",
+    "options": []
+   },
+   {
+    "name": "fedlogic_outreach_consent_date",
+    "label": "FedLogic Consent Date",
+    "type": "datetime",
+    "fieldType": "date",
+    "groupName": "fedlogic_member_outreach",
+    "displayOrder": -1,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "fedlogic_outreach_consent_review_date",
+    "label": "Consent Review Date",
+    "type": "string",
+    "fieldType": "text",
+    "groupName": "fedlogic_member_outreach",
+    "description": "Tracks consent review date for outreach communications tied to the contact's permission to receive messages.",
+    "displayOrder": -1,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "fedlogic_outreach_consent_source",
+    "label": "FedLogic Consent Source",
+    "type": "enumeration",
+    "fieldType": "select",
+    "groupName": "fedlogic_member_outreach",
+    "displayOrder": -1,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive",
+    "options": [
+     {
+      "label": "Phone",
+      "value": "Phone",
+      "displayOrder": 0,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "SMS",
+      "value": "SMS",
+      "displayOrder": 1,
+      "hidden": false,
+      "description": ""
+     }
+    ]
+   },
+   {
+    "name": "fedlogic_outreach_consent_status",
+    "label": "FedLogic Consent Status",
+    "type": "bool",
+    "fieldType": "booleancheckbox",
+    "groupName": "fedlogic_member_outreach",
+    "displayOrder": -1,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive",
+    "options": [
+     {
+      "label": "Yes",
+      "value": "true",
+      "displayOrder": 0,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "No",
+      "value": "false",
+      "displayOrder": 1,
+      "hidden": false,
+      "description": ""
+     }
+    ]
+   },
+   {
+    "name": "fedlogic_outreach_enrolled_date",
+    "label": "FedLogic Enrolled Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "fedlogic_member_outreach",
+    "displayOrder": -1,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "fedlogic_outreach_referral_export_date",
+    "label": "FedLogic Referral/Export Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "fedlogic_member_outreach",
+    "displayOrder": -1,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "fedlogic_suppressed",
+    "label": "FedLogic Suppressed",
+    "type": "bool",
+    "fieldType": "booleancheckbox",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive",
+    "options": [
+     {
+      "label": "Yes",
+      "value": "true",
+      "displayOrder": 0,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "No",
+      "value": "false",
+      "displayOrder": 1,
+      "hidden": false,
+      "description": ""
+     }
+    ]
+   },
+   {
+    "name": "flag_for_review",
+    "label": "Flag for Review",
+    "type": "bool",
+    "fieldType": "booleancheckbox",
+    "groupName": "contactinformation",
+    "displayOrder": -1,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive",
+    "options": [
+     {
+      "label": "Yes",
+      "value": "true",
+      "displayOrder": 0,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "No",
+      "value": "false",
+      "displayOrder": 1,
+      "hidden": false,
+      "description": ""
+     }
+    ]
+   },
+   {
+    "name": "gi__last_enrolled_date",
+    "label": "GI - Last Enrolled Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "karias_constulant_summit_2026_attendee",
+    "label": "Karias Constulant Summit 2026 Attendee",
+    "type": "bool",
+    "fieldType": "booleancheckbox",
+    "groupName": "contactinformation",
+    "displayOrder": -1,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive",
+    "options": [
+     {
+      "label": "Yes",
+      "value": "true",
+      "displayOrder": 0,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "No",
+      "value": "false",
+      "displayOrder": 1,
+      "hidden": false,
+      "description": ""
+     }
+    ]
+   },
+   {
+    "name": "kcard_save_date",
+    "label": "K-Card Save Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "last_ct_colonography_date",
+    "label": "Last CT Colonography Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "description": "counts for 5 years \u00b7 codes 74261\u201374263",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "last_fitfobt_date",
+    "label": "Last FIT/FOBT Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "description": "counts for 1 year \u00b7 codes 82274, G0328, 82270, G0107",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "last_provider_search_date",
+    "label": "Last Provider Search Date",
+    "type": "datetime",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "last_sigmoidoscopy_date",
+    "label": "Last Sigmoidoscopy Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "description": "counts for 5 years \u00b7 codes 45330, G0104",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "last_stool_dna_date",
+    "label": "Last Stool DNA Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "description": "counts for 3 years \u00b7 codes G0464, 81528",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "mammogram__last_enrolled_date",
+    "label": "Mammogram - Last Enrolled Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "outbound_cooldown_until",
+    "label": "Outbound Cooldown Until",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "prior_plan_year_member",
+    "label": "Prior Plan Year Member",
+    "type": "bool",
+    "fieldType": "booleancheckbox",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive",
+    "options": [
+     {
+      "label": "Yes",
+      "value": "true",
+      "displayOrder": 0,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "No",
+      "value": "false",
+      "displayOrder": 1,
+      "hidden": false,
+      "description": ""
+     }
+    ]
+   },
+   {
+    "name": "provider_search_location",
+    "label": "Provider Search Location",
+    "type": "string",
+    "fieldType": "text",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "provider_search_specialty",
+    "label": "Provider Search Specialty",
+    "type": "string",
+    "fieldType": "text",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "qualifying_campaigns",
+    "label": "Qualifying Campaigns",
+    "type": "enumeration",
+    "fieldType": "checkbox",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive",
+    "options": [
+     {
+      "label": "Provider Search Drop Off",
+      "value": "Provider Search Drop Off",
+      "displayOrder": 0,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "K-Card Check In Follow Up",
+      "value": "K-Card Check In Follow Up",
+      "displayOrder": 1,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "ER Diversion",
+      "value": "ER Diversion",
+      "displayOrder": 2,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "FedLogic",
+      "value": "FedLogic",
+      "displayOrder": 3,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "Welcome Call",
+      "value": "Welcome Call",
+      "displayOrder": 4,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "Welcome Call - Renewal",
+      "value": "Welcome Call - Renewal",
+      "displayOrder": 5,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "Primary Care",
+      "value": "Primary Care",
+      "displayOrder": 6,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "Mammogram",
+      "value": "Mammogram",
+      "displayOrder": 7,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "GI/Colonoscopy",
+      "value": "GI/Colonoscopy",
+      "displayOrder": 8,
+      "hidden": false,
+      "description": ""
+     }
+    ]
+   },
+   {
+    "name": "renewal_welcome_completed_date",
+    "label": "Renewal Welcome Completed Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "sms_capable",
+    "label": "SMS Capable",
+    "type": "bool",
+    "fieldType": "booleancheckbox",
+    "groupName": "contactinformation",
+    "description": "Confirms the number can receive text before the no-answer text step runs",
+    "displayOrder": -1,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive",
+    "options": [
+     {
+      "label": "Yes",
+      "value": "true",
+      "displayOrder": 0,
+      "hidden": false,
+      "description": ""
+     },
+     {
+      "label": "No",
+      "value": "false",
+      "displayOrder": 1,
+      "hidden": false,
+      "description": ""
+     }
+    ]
+   },
+   {
+    "name": "test",
+    "label": "test",
+    "type": "string",
+    "fieldType": "text",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "welcome_call_completed_date",
+    "label": "Welcome Call Completed Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "wellness__last_enrolled_date",
+    "label": "Wellness - Last Enrolled Date",
+    "type": "date",
+    "fieldType": "date",
+    "groupName": "contactinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   }
+  ],
+  "companies": [
+   {
+    "name": "cobra_administrator",
+    "label": "COBRA Administrator",
+    "type": "string",
+    "fieldType": "text",
+    "groupName": "companyinformation",
+    "description": "A COBRA administrator manages the continuation of health coverage for employees and their families after qualifying events, ensuring compliance with federal and state regulations. This can be a service purchased from the TPA or managed externally. ",
+    "displayOrder": -1,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   },
+   {
+    "name": "group_code",
+    "label": "Group Code",
+    "type": "string",
+    "fieldType": "text",
+    "groupName": "companyinformation",
+    "displayOrder": 0,
+    "hasUniqueValue": false,
+    "hidden": false,
+    "formField": true,
+    "externalOptions": false,
+    "dataSensitivity": "non_sensitive"
+   }
+  ]
+ },
+ "update": {
+  "contacts": [
+   {
+    "name": "communication_preference_source",
+    "patch": {
+     "groupName": "communication_preference"
+    }
+   },
+   {
+    "name": "last_inbound_communication_channel",
+    "patch": {
+     "groupName": "communication_preference"
+    }
+   },
+   {
+    "name": "member_selected_communication_preference",
+    "patch": {
+     "groupName": "communication_preference"
+    }
+   },
+   {
+    "name": "preferred_outbound_communication_channel",
+    "patch": {
+     "groupName": "communication_preference",
+     "options": [
+      {
+       "label": "Email",
+       "value": "email",
+       "displayOrder": 0,
+       "hidden": false
+      },
+      {
+       "label": "Text",
+       "value": "text",
+       "displayOrder": 1,
+       "hidden": false
+      },
+      {
+       "label": "Phone Call",
+       "value": "phone_call",
+       "displayOrder": 2,
+       "hidden": false
+      },
+      {
+       "label": "Unknown",
+       "value": "unknown",
+       "displayOrder": 3,
+       "hidden": false
+      }
+     ]
+    }
+   },
+   {
+    "name": "pair_key",
+    "patch": {
+     "groupName": "_merge_review_row_"
+    }
+   },
+   {
+    "name": "date_member_took_action_to_book_an_appt",
+    "patch": {
+     "label": "Date member took action to book an appt"
+    }
+   },
+   {
+    "name": "last_csat_survey_rating_sms",
+    "patch": {
+     "options": [
+      {
+       "label": "Unhappy",
+       "value": "0",
+       "displayOrder": 0,
+       "hidden": false
+      },
+      {
+       "label": "Netural",
+       "value": "1",
+       "displayOrder": 1,
+       "hidden": false
+      },
+      {
+       "label": "Happy",
+       "value": "2",
+       "displayOrder": 2,
+       "hidden": false
+      }
+     ]
+    }
+   }
+  ]
+ }
+}
